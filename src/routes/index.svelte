@@ -1,2 +1,25 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({ fetch }) => {
+		const posts = await fetch('/api/posts.json');
+		const allPosts = await posts.json();
+
+		return {
+			props: {
+				postTitles: allPosts
+			}
+		};
+	};
+</script>
+
+<script lang="ts">
+	export let postTitles: String[];
+</script>
+
+<div>
+	<h1>roiducto Blog</h1>
+	{#each postTitles as title}
+		<p class="info">{title}</p>
+	{/each}
+</div>
