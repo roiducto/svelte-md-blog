@@ -14,12 +14,12 @@
 </script>
 
 <script lang="ts">
-	export let postTitles: String[];
+	export let postTitles: string[];
 </script>
 
 <div>
 	<h1>roiducto Blog</h1>
 	{#each postTitles as title}
-		<p class="info">{title}</p>
+		<a href="/{title}"><p class="info">{title}</p></a>
 	{/each}
 </div>
