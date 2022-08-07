@@ -1,5 +1,8 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-cloudflare';
 import preprocess from 'svelte-preprocess';
+import static_adapter from '@sveltejs/adapter-static';
+
+const dev = process.env.NODE_ENV === 'development';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,8 +11,10 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
 	}
 };
 
 export default config;
+
+
